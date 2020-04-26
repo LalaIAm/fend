@@ -18,10 +18,8 @@
  *
  */
 
-
-
 const nodeList = document.querySelectorAll('section');
-const nav = document.getElementById( 'navbar__list' );
+const nav = document.getElementById('navbar__list');
 
 console.log(nodeList);
 
@@ -31,37 +29,30 @@ console.log(nodeList);
  *
  */
 
-
-
 /**
  * End Helper Functions
  * Begin Main Functions
  *
  */
 
-
-
 // build the nav
 function createNav() {
-    let anchor = document.createElement( 'a' );
-   
-    
 	for (let i = 0; i < nodeList.length; i++) {
-        let data = nodeList[ i ].getAttribute( 'data-nav' );
-        let id = nodeList[i].getAttribute('id')
-        
-        let li = document.createElement('li')
-        li.textContent = data;
-        li.setAttribute( 'class', 'menu__link' )
-        li.addEventListener( 'click', function () {
-            nodeList[i].scrollIntoView({behavior: 'smooth', block: 'nearest'})
-        })
-        nav.appendChild( li );
-        console.log( nav );
+		let data = nodeList[i].getAttribute('data-nav');
+		let id = nodeList[i].getAttribute('id');
+		let anchor = document.createElement('a');
+
+		anchor.textContent = data;
+		anchor.setAttribute('class', 'menu__link');
+		anchor.setAttribute('href', `#${id}`);
+		let li = document.createElement('li');
+		li.appendChild(anchor);
+
+		nav.appendChild(li);
 	}
 }
 
-createNav()
+createNav();
 // Add class 'active' to section when near top of viewport
 
 // Scroll to anchor ID using scrollTO event
@@ -78,17 +69,17 @@ createNav()
 
 // Set sections as active
 const setActive = () => {
-    for ( let i = 0; i < nodeList.length; i++ ){
-        let section = nodeList[ i ];
-        let sectionRect = section.getBoundingClientRect();
-        let sectionOffsetTop = sectionRect.top + window.pageYOffset;
-        let sectionOffsetBottom = sectionRect.bottom + window.pageYOffset;
+	for (let i = 0; i < nodeList.length; i++) {
+		let section = nodeList[i];
+		let sectionRect = section.getBoundingClientRect();
+		let sectionOffsetTop = sectionRect.top + window.pageYOffset;
+		let sectionOffsetBottom = sectionRect.bottom + window.pageYOffset;
 
-        section.parentNode.style.height = sectionRect.height + "px";
+		section.parentNode.style.height = sectionRect.height + 'px';
 
-        console.log( sectionOffsetTop )
-        console.log(sectionOffsetBottom)
-    }
+		console.log(sectionOffsetTop);
+		console.log(sectionOffsetBottom);
+	}
 };
 
-setActive()
+setActive();
